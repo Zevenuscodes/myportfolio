@@ -1,0 +1,174 @@
+.bento-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.55rem;
+  width: 100%;
+}
+
+/* Single card or 5th spans full width */
+.bento-card-grid:has(.magic-bento-card:only-child) {
+  grid-template-columns: 1fr;
+}
+
+.magic-bento-card:only-child {
+  min-height: 90px;
+  grid-column: 1;
+}
+
+.magic-bento-card:nth-child(5) {
+  grid-column: 1 / span 2;
+}
+
+.magic-bento-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  min-height: 110px;
+  width: 100%;
+  padding: 1rem 1.1rem;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 245, 255, 0.25);
+  background: rgba(8, 14, 28, 0.95);
+  overflow: hidden;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  box-shadow: inset 0 0 20px rgba(0, 245, 255, 0.03);
+
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 220px;
+}
+
+/* 5th full-width card is shorter */
+.magic-bento-card:nth-child(5) {
+  min-height: 70px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1.2rem;
+}
+
+.magic-bento-card:nth-child(5) .magic-bento-card__content {
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.magic-bento-card:nth-child(5) .magic-bento-card__description {
+  margin: 0;
+}
+
+.magic-bento-card:hover {
+  border-color: rgba(245, 230, 66, 0.6);
+  background: rgba(12, 18, 35, 1);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(245, 230, 66, 0.1), inset 0 0 30px rgba(245, 230, 66, 0.04);
+}
+
+.magic-bento-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.magic-bento-card__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.magic-bento-card__label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 3px;
+  color: rgba(0, 245, 255, 0.6);
+  text-transform: uppercase;
+}
+
+.magic-bento-card__title {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: #ffffff;
+  margin: 0 0 0.3rem;
+  text-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+}
+
+.magic-bento-card__description {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.58rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 0.5px;
+}
+
+.magic-bento-card__arrow {
+  font-size: 0.7rem;
+  color: rgba(245, 230, 66, 0.3);
+  transition: color 0.2s, transform 0.2s;
+  flex-shrink: 0;
+}
+
+.magic-bento-card:hover .magic-bento-card__arrow {
+  color: #f5e642;
+  transform: translateX(3px);
+}
+
+/* Border glow */
+.magic-bento-card--border-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(245, 230, 66, calc(var(--glow-intensity) * 0.85)) 0%,
+    rgba(0, 245, 255, calc(var(--glow-intensity) * 0.3)) 45%,
+    transparent 70%
+  );
+  border-radius: inherit;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.magic-bento-card--border-glow:hover {
+  box-shadow:
+    0 6px 30px rgba(245, 230, 66, 0.08),
+    0 0 0 1px rgba(245, 230, 66, 0.15);
+}
+
+/* Particles */
+.particle-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Global spotlight */
+.global-spotlight {
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+  z-index: 200 !important;
+  pointer-events: none;
+}
+
+.bento-section {
+  position: relative;
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  .bento-card-grid {
+    grid-template-columns: 1fr;
+  }
+  .magic-bento-card:nth-child(5) {
+    grid-column: 1;
+  }
+}
