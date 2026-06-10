@@ -21,10 +21,10 @@ const PROJECTS = [
   },
   {
     id: 3,
-    client: '',
-    title: 'Video 865',
-    description: '',
-    tags: ['Short Form'],
+    client: 'Drake',
+    title: 'What Did I Miss',
+    description: 'A tight, high-energy cut built around Drake — every frame hits.',
+    tags: ['Short Form', 'Edit'],
     video: '/video-865.mp4',
   },
 ];
