@@ -148,6 +148,18 @@ export default function AboutPage() {
                 ))}
               </motion.div>
 
+              {/* Bio */}
+              <motion.div variants={item} style={{
+                fontFamily: 'Share Tech Mono, monospace',
+                fontSize: '0.82rem', lineHeight: '2',
+                color: 'rgba(255,255,255,0.5)',
+                letterSpacing: '0.5px',
+                borderLeft: '2px solid rgba(0,245,255,0.2)',
+                paddingLeft: '1.2rem',
+              }}>
+                I am a Creative Director based out of Dehradun. I stitch — as my name suggests — visuals for artists and brands. Welcome to my world.
+              </motion.div>
+
             </div>
 
             {/* Right — photo */}
