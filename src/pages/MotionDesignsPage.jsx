@@ -11,6 +11,30 @@ const PROJECTS = [
     tags: ['SaaS', 'Explainer', 'Motion'],
     video: '/paypal.mp4',
   },
+  {
+    id: 2,
+    client: 'Truck Art',
+    title: 'Truck Art Adda',
+    description: 'A vibrant dive into the subculture of Indian truck art — bold, colourful, unapologetically loud.',
+    tags: ['Short Form', 'Documentary'],
+    video: '/truckartsample.mp4',
+  },
+  {
+    id: 3,
+    client: 'Elon Musk X Nikhil Kamath',
+    title: 'Elon Musk X Nikhil Kamath',
+    description: 'A sharp, punchy cut of the Elon Musk and Nikhil Kamath conversation.',
+    tags: ['Interview', 'Edit'],
+    video: '/video-31.mp4',
+  },
+  {
+    id: 4,
+    client: 'Drake',
+    title: 'What Did I Miss',
+    description: 'A tight, high-energy cut built around Drake — every frame hits.',
+    tags: ['Edit'],
+    video: '/video-865.mp4',
+  },
 ];
 
 function VideoCard({ project, index }) {

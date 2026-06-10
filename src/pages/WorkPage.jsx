@@ -16,13 +16,13 @@ const SHIPS = [
   },
   {
     id: 2,
-    code: 'SF — 02',
-    name: 'SHORT FORM',
-    subtitle: 'Reels, shorts & quick-cut edits',
+    code: 'MV — 02',
+    name: 'MUSIC VIDEOS',
+    subtitle: 'Full music video productions',
     accent: '#ff006e',
-    path: '/short-form',
+    path: '/music-videos',
     clipPath: 'polygon(0% 20%, 12% 0%, 88% 0%, 100% 20%, 100% 80%, 88% 100%, 12% 100%, 0% 80%)',
-    stats: [{ label: 'Format', value: '9:16' }, { label: 'Type', value: 'REEL' }],
+    stats: [{ label: 'Format', value: '16:9' }, { label: 'Type', value: 'MV' }],
   },
   {
     id: 3,

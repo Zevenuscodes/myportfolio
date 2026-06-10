@@ -11,7 +11,6 @@ import SaasExplainersPage from './pages/SaasExplainersPage';
 import MusicVideosPage from './pages/MusicVideosPage';
 import MotionDesignsPage from './pages/MotionDesignsPage';
 import LongformPage from './pages/LongformPage';
-import ShortFormPage from './pages/ShortFormPage';
 import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 
@@ -32,7 +31,6 @@ export default function App() {
             <Route path="/music-videos" element={<MusicVideosPage />} />
             <Route path="/motion-designs" element={<MotionDesignsPage />} />
             <Route path="/longform" element={<LongformPage />} />
-            <Route path="/short-form" element={<ShortFormPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/about" element={<AboutPage />} />
           </Routes>
