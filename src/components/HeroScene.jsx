@@ -6,6 +6,7 @@ import Character3D from './Character3D';
 import ASCIIText from './ASCIIText';
 import MagicBento from './MagicBento';
 import { usePageTransition } from './DoorTransition';
+import SpaceDecor from './SpaceDecor';
 
 function CyberpunkLights() {
   const cyanRef = useRef();
@@ -181,6 +182,9 @@ export default function HeroScene() {
           textColor="#f5e642"
         />
       </div>
+
+      {/* Space decor — planets + ships on the left */}
+      <SpaceDecor />
 
       {/* Atmosphere blobs */}
       <div style={{
