@@ -35,35 +35,30 @@ export default function AboutPage() {
 
         {/* Flying rockets */}
         {[
-          { top: '12%', startX: '-120px', endX: '110vw', rotate: 15,  color: '#00f5ff', dur: 18, delay: 0,   scale: 1    },
-          { top: '55%', startX: '110vw',  endX: '-120px', rotate: 200, color: '#ff006e', dur: 22, delay: 4,   scale: 0.7  },
-          { top: '30%', startX: '-120px', endX: '110vw',  rotate: 5,   color: '#f5e642', dur: 28, delay: 9,   scale: 0.55 },
-          { top: '75%', startX: '110vw',  endX: '-120px', rotate: 185, color: '#bc13fe', dur: 20, delay: 14,  scale: 0.8  },
-          { top: '42%', startX: '-120px', endX: '110vw',  rotate: 20,  color: '#00f5ff', dur: 24, delay: 7,   scale: 0.6  },
-        ].map(({ top, startX, endX, rotate, color, dur, delay, scale }, i) => (
+          { top: '12%', x: [-120, -60, 2100, 2200],  rotate: 15,  color: '#00f5ff', dur: 18, delay: 0,  scale: 1    },
+          { top: '55%', x: [2200, 2100, -60, -120],  rotate: 200, color: '#ff006e', dur: 22, delay: 4,  scale: 0.7  },
+          { top: '30%', x: [-120, -60, 2100, 2200],  rotate: 5,   color: '#f5e642', dur: 28, delay: 9,  scale: 0.55 },
+          { top: '75%', x: [2200, 2100, -60, -120],  rotate: 185, color: '#bc13fe', dur: 20, delay: 14, scale: 0.8  },
+          { top: '42%', x: [-120, -60, 2100, 2200],  rotate: 20,  color: '#00f5ff', dur: 24, delay: 7,  scale: 0.6  },
+        ].map(({ top, x, rotate, color, dur, delay, scale }, i) => (
           <motion.div
             key={i}
-            animate={{ x: [startX, endX], opacity: [0, 1, 1, 0] }}
+            animate={{ x, opacity: [0, 1, 1, 0] }}
             transition={{ repeat: Infinity, duration: dur, delay, ease: 'linear', times: [0, 0.05, 0.95, 1] }}
             style={{
               position: 'absolute', top, left: 0,
               zIndex: 2, pointerEvents: 'none',
-              transform: `rotate(${rotate}deg) scale(${scale})`,
+              rotate: `${rotate}deg`,
+              scale,
               filter: `drop-shadow(0 0 6px ${color}) drop-shadow(0 0 14px ${color}88)`,
             }}
           >
             <svg viewBox="0 0 28 56" width="28" height="56" style={{ overflow: 'visible' }}>
-              {/* Body */}
               <polygon points="14,0 22,18 22,42 14,48 6,42 6,18" fill={`${color}18`} stroke={color} strokeWidth="1" />
-              {/* Nose cone */}
               <polygon points="14,0 19,18 9,18" fill={`${color}55`} />
-              {/* Window */}
               <circle cx="14" cy="26" r="4" fill={`${color}44`} stroke={color} strokeWidth="0.8" />
-              {/* Fins left */}
               <polygon points="6,34 0,48 6,44" fill={`${color}33`} stroke={color} strokeWidth="0.7" />
-              {/* Fins right */}
               <polygon points="22,34 28,48 22,44" fill={`${color}33`} stroke={color} strokeWidth="0.7" />
-              {/* Exhaust flame */}
               <ellipse cx="14" cy="50" rx="5" ry="3" fill={color} opacity="0.9" />
               <ellipse cx="14" cy="54" rx="3" ry="2" fill={color} opacity="0.4" />
             </svg>
