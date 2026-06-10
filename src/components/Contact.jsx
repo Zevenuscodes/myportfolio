@@ -5,9 +5,6 @@ import { useInView } from 'react-intersection-observer';
 const PROJECT_TYPES = ['Brand Film', 'Music Video', 'Social Content', 'Documentary', 'Commercial', 'Other'];
 const SOCIALS = [
   { label: 'Instagram', href: 'https://www.instagram.com/darzeeeeeee/' },
-  { label: 'YouTube', href: '#' },
-  { label: 'LinkedIn', href: '#' },
-  { label: 'Behance', href: '#' },
 ];
 
 export default function Contact() {
