@@ -2,14 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Footer from '../components/Footer';
 
-const SKILLS = [
-  { label: 'Motion Design',    tools: 'After Effects · Premiere Pro' },
-  { label: 'SaaS Explainers',  tools: 'After Effects · Figma' },
-  { label: 'Music Videos',     tools: 'Premiere · DaVinci Resolve' },
-  { label: 'Visualisers',      tools: 'After Effects · Cinema 4D' },
-  { label: 'Longform',         tools: 'Premiere · DaVinci Resolve' },
-  { label: 'Color Grading',    tools: 'DaVinci Resolve' },
-];
 
 const item = {
   hidden: { opacity: 0, y: 24 },
@@ -124,49 +116,6 @@ export default function AboutPage() {
                 ))}
               </motion.div>
 
-              {/* Capabilities label */}
-              <motion.div variants={item} style={{
-                fontFamily: 'Share Tech Mono, monospace',
-                fontSize: '0.48rem', letterSpacing: '4px',
-                color: 'rgba(0,245,255,0.35)', textTransform: 'uppercase',
-                marginBottom: '1rem',
-              }}>
-                // Capabilities
-              </motion.div>
-
-              {/* Skills grid */}
-              <motion.div variants={container} style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
-                gap: '0.5rem',
-              }}>
-                {SKILLS.map((s) => (
-                  <motion.div
-                    key={s.label}
-                    variants={item}
-                    whileHover={{ borderColor: 'rgba(0,245,255,0.45)', y: -4 }}
-                    style={{
-                      background: 'rgba(8,14,28,0.95)',
-                      border: '1px solid rgba(0,245,255,0.12)',
-                      padding: '0.8rem 1rem',
-                      clipPath: 'polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px)',
-                      transition: 'border-color 0.2s, transform 0.2s',
-                      position: 'relative', overflow: 'hidden',
-                    }}
-                  >
-                    {/* Grid texture */}
-                    <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', backgroundImage: 'linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px)', backgroundSize: '14px 14px' }} />
-                    {/* Engine stripe */}
-                    <div style={{ position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(0,245,255,0.5), transparent)', pointerEvents: 'none' }} />
-                    {/* Status dot */}
-                    <motion.div animate={{ opacity: [1,0.2,1] }} transition={{ repeat: Infinity, duration: 2.5 }}
-                      style={{ position: 'absolute', top: '8px', right: '8px', width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(0,245,255,0.7)', boxShadow: '0 0 5px rgba(0,245,255,0.6)' }} />
-                    <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '0.58rem', fontWeight: 700, color: '#fff', letterSpacing: '1px', position: 'relative', zIndex: 1 }}>
-                      {s.label}
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
             </div>
 
             {/* Right — photo */}
