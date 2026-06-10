@@ -6,7 +6,7 @@ const PROJECTS = [
   {
     id: 1,
     client: 'Truck Art',
-    title: 'Truck Art Sample',
+    title: 'Truck Art Adda',
     description: 'A vibrant dive into the subculture of Indian truck art — bold, colourful, unapologetically loud.',
     tags: ['Short Form', 'Documentary', 'Motion'],
     video: '/truckartsample.mp4',

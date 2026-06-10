@@ -123,6 +123,7 @@ button {
 /* Work page */
 @media (max-width: 768px) {
   .work-section { padding: 6rem 1.5rem 3rem !important; }
+  .work-ships-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
 }
 @media (max-width: 480px) {
   .work-section { padding: 6rem 1rem 2.5rem !important; }
