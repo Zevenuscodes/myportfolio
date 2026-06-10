@@ -19,6 +19,14 @@ const PROJECTS = [
     tags: ['Short Form', 'Interview', 'Edit'],
     video: '/video-31.mp4',
   },
+  {
+    id: 3,
+    client: '',
+    title: 'Video 865',
+    description: '',
+    tags: ['Short Form'],
+    video: '/video-865.mp4',
+  },
 ];
 
 function VideoCard({ project, index }) {
