@@ -7,7 +7,7 @@ const SHIPS = [
   {
     id: 1,
     code: 'LF — 01',
-    name: 'LONG FORM',
+    name: 'DOCUMENTARIES',
     subtitle: 'Documentary & long-form content',
     accent: '#00f5ff',
     path: '/longform',

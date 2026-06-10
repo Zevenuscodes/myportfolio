@@ -11,7 +11,7 @@ export default function LongformPage() {
         fontSize: '1.2rem', letterSpacing: '4px', textAlign: 'center',
         padding: '7rem 2rem 4rem',
       }}>
-        LONG FORM — COMING SOON
+        DOCUMENTARIES — COMING SOON
       </section>
       <Footer />
     </>
