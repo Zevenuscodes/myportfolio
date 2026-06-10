@@ -47,20 +47,38 @@ function VideoCard({ project, index }) {
         </div>
       </div>
 
+      {/* Engine glow */}
+      <motion.div animate={{ opacity: hovered ? 0.8 : 0.2, scaleX: hovered ? 1.4 : 0.8 }} transition={{ duration: 0.4 }}
+        style={{ position: 'absolute', bottom: '-16px', left: '20%', right: '20%', height: '35px', background: 'radial-gradient(ellipse at 50% 0%, rgba(245,230,66,0.9) 0%, rgba(245,230,66,0.3) 50%, transparent 75%)', filter: 'blur(10px)', zIndex: 0, transformOrigin: 'center top' }} />
+
       <div
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         onClick={toggle}
         style={{
-          position: 'relative', width: '100%', background: '#050810',
-          clipPath: 'polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 28px 100%, 0 calc(100% - 28px))',
-          border: `1px solid ${hovered ? 'rgba(245,230,66,0.4)' : 'rgba(245,230,66,0.18)'}`,
-          boxShadow: hovered ? '0 0 40px rgba(245,230,66,0.12)' : '0 0 20px rgba(245,230,66,0.05)',
+          position: 'relative', width: '100%', background: '#050810', zIndex: 1,
+          clipPath: 'polygon(14px 0%, calc(100% - 14px) 0%, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0% calc(100% - 14px), 0% 14px)',
+          border: `1px solid ${hovered ? 'rgba(245,230,66,0.5)' : 'rgba(245,230,66,0.2)'}`,
+          boxShadow: hovered ? '0 0 40px rgba(245,230,66,0.15)' : '0 0 20px rgba(245,230,66,0.05)',
           transition: 'box-shadow 0.3s, border-color 0.3s', cursor: 'pointer', overflow: 'hidden',
         }}
       >
         <video ref={videoRef} src={project.video} loop playsInline onEnded={() => setPlaying(false)} style={{ width: '100%', display: 'block' }} />
+        {/* Grid texture */}
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', backgroundImage: 'linear-gradient(rgba(245,230,66,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(245,230,66,0.04) 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+        {/* Scanlines */}
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.04) 3px, rgba(0,0,0,0.04) 4px)' }} />
+        {/* Status lights */}
+        <div style={{ position: 'absolute', top: '12px', left: '14px', display: 'flex', gap: '5px', zIndex: 4, pointerEvents: 'none' }}>
+          {[0,1,2].map(i => (
+            <motion.div key={i} animate={{ opacity: [1,0.2,1] }} transition={{ repeat: Infinity, duration: 2, delay: i*0.35 }}
+              style={{ width: i===0?'7px':'5px', height: i===0?'7px':'5px', borderRadius: '50%', background: i===0?'rgba(245,230,66,1)':'rgba(245,230,66,0.4)', boxShadow: i===0?'0 0 7px rgba(245,230,66,0.9)':'none' }} />
+          ))}
+        </div>
+        {/* Scan sweep */}
+        {hovered && <motion.div animate={{ top: ['-3%', '108%'] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'linear' }} style={{ position: 'absolute', left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(245,230,66,0.55), transparent)', pointerEvents: 'none', zIndex: 3 }} />}
+        {/* Engine stripe */}
+        <div style={{ position: 'absolute', bottom: 0, left: '25%', right: '25%', height: '2px', background: 'linear-gradient(90deg, transparent, rgba(245,230,66,0.8), transparent)', pointerEvents: 'none', zIndex: 4 }} />
 
         <motion.div
           animate={{ opacity: playing ? (hovered ? 1 : 0) : 1 }}

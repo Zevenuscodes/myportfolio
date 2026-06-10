@@ -262,14 +262,23 @@ const MagicBento = ({
             enableMagnetism={enableMagnetism}
             onClick={() => onCardClick?.(card)}
           >
+            {/* Spaceship decorations */}
+            <div className="ship-scan-line" />
+            <div className="ship-engine-stripe" />
+
             <div className="magic-bento-card__header">
               <div className="magic-bento-card__label">{card.label}</div>
-              <span className="magic-bento-card__arrow">▶</span>
+              <div className="ship-status-lights">
+                <div className="ship-status-light" style={{ background: 'rgba(0,245,255,0.9)', boxShadow: '0 0 4px rgba(0,245,255,0.8)' }} />
+                <div className="ship-status-light" style={{ background: 'rgba(0,245,255,0.5)' }} />
+                <div className="ship-status-light" style={{ background: 'rgba(0,245,255,0.25)' }} />
+              </div>
             </div>
-            <div className="magic-bento-card__content">
+            <div className="magic-bento-card__content" style={{ position: 'relative', zIndex: 1 }}>
               <h2 className="magic-bento-card__title">{card.title}</h2>
               <p className="magic-bento-card__description">{card.description}</p>
             </div>
+            <span className="magic-bento-card__arrow" style={{ position: 'absolute', bottom: '0.8rem', right: '1rem' }}>▶</span>
           </ParticleCard>
         ))}
       </div>

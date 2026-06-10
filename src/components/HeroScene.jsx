@@ -177,7 +177,7 @@ export default function HeroScene() {
           enableWaves={true}
           asciiFontSize={6}
           textFontSize={200}
-          planeBaseHeight={window.innerWidth <= 768 ? 1.8 : 4}
+          planeBaseHeight={window.innerWidth <= 390 ? 1.1 : window.innerWidth <= 480 ? 1.3 : window.innerWidth <= 768 ? 1.6 : 4}
           textColor="#f5e642"
         />
       </div>

@@ -44,6 +44,17 @@ function VideoCard({ project, index }) {
       transition={{ duration: 0.6, delay: index * 0.15 }}
       style={{ display: 'flex', flexDirection: 'column', width: '220px' }}
     >
+      {/* Engine glow beneath */}
+      <motion.div
+        animate={{ opacity: hovered ? 0.8 : 0.2, scaleX: hovered ? 1.3 : 0.7 }}
+        transition={{ duration: 0.4 }}
+        style={{
+          position: 'absolute', bottom: '50px', left: '10%', right: '10%', height: '30px',
+          background: 'radial-gradient(ellipse at 50% 0%, rgba(255,0,110,0.9) 0%, rgba(255,0,110,0.3) 50%, transparent 75%)',
+          filter: 'blur(10px)', zIndex: 0, transformOrigin: 'center top',
+        }}
+      />
+
       {/* 9:16 video card */}
       <div
         onMouseEnter={() => setHovered(true)}
@@ -54,13 +65,11 @@ function VideoCard({ project, index }) {
           width: '220px',
           aspectRatio: '9 / 16',
           background: '#050810',
-          clipPath: 'polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px))',
-          border: `1px solid ${hovered ? 'rgba(0,245,255,0.4)' : 'rgba(0,245,255,0.18)'}`,
-          boxShadow: hovered
-            ? '0 0 30px rgba(0,245,255,0.15), inset 0 0 20px rgba(0,245,255,0.04)'
-            : '0 0 15px rgba(0,245,255,0.05)',
+          clipPath: 'polygon(14px 0%, calc(100% - 14px) 0%, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0% calc(100% - 14px), 0% 14px)',
+          border: `1px solid ${hovered ? 'rgba(255,0,110,0.5)' : 'rgba(255,0,110,0.2)'}`,
+          boxShadow: hovered ? '0 0 30px rgba(255,0,110,0.2)' : '0 0 12px rgba(255,0,110,0.06)',
           transition: 'box-shadow 0.3s, border-color 0.3s',
-          cursor: 'pointer',
+          cursor: 'pointer', zIndex: 1,
           overflow: 'hidden',
         }}
       >
@@ -73,11 +82,25 @@ function VideoCard({ project, index }) {
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
         />
 
+        {/* Grid texture */}
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', backgroundImage: 'linear-gradient(rgba(255,0,110,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,0,110,0.04) 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
+
         {/* Scanlines */}
-        <div style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none',
-          background: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.04) 3px, rgba(0,0,0,0.04) 4px)',
-        }} />
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.04) 3px, rgba(0,0,0,0.04) 4px)' }} />
+
+        {/* Scan sweep */}
+        {hovered && <motion.div animate={{ top: ['-5%', '110%'] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'linear' }} style={{ position: 'absolute', left: 0, right: 0, height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,0,110,0.6), transparent)', pointerEvents: 'none', zIndex: 3 }} />}
+
+        {/* Status lights top-left */}
+        <div style={{ position: 'absolute', top: '10px', left: '10px', display: 'flex', gap: '4px', zIndex: 4, pointerEvents: 'none' }}>
+          {[0,1,2].map(i => (
+            <motion.div key={i} animate={{ opacity: [1,0.2,1] }} transition={{ repeat: Infinity, duration: 2, delay: i*0.35 }}
+              style={{ width: i===0?'6px':'4px', height: i===0?'6px':'4px', borderRadius: '50%', background: i===0?'rgba(255,0,110,1)':'rgba(255,0,110,0.4)', boxShadow: i===0?'0 0 6px rgba(255,0,110,0.8)':'none' }} />
+          ))}
+        </div>
+
+        {/* Engine stripe */}
+        <div style={{ position: 'absolute', bottom: 0, left: '20%', right: '20%', height: '1.5px', background: 'linear-gradient(90deg, transparent, rgba(255,0,110,0.8), transparent)', pointerEvents: 'none', zIndex: 4 }} />
 
         {/* Play/pause overlay */}
         <motion.div

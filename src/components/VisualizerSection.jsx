@@ -70,7 +70,24 @@ function VideoCard({ item }) {
       />
 
       {/* Card shell */}
-      <div style={{ position: 'relative', zIndex: 1, background: '#05080f', border: `1px solid ${item.accentColor}55` }}>
+      <div style={{
+        position: 'relative', zIndex: 1, background: '#05080f',
+        border: `1px solid ${item.accentColor}55`,
+        clipPath: 'polygon(12px 0%, calc(100% - 12px) 0%, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0% calc(100% - 12px), 0% 12px)',
+        overflow: 'hidden',
+      }}>
+        {/* Grid texture */}
+        <div style={{
+          position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
+          backgroundImage: `linear-gradient(${item.accentColor}07 1px, transparent 1px), linear-gradient(90deg, ${item.accentColor}07 1px, transparent 1px)`,
+          backgroundSize: '18px 18px',
+        }} />
+        {/* Engine stripe */}
+        <div style={{
+          position: 'absolute', bottom: 0, left: '25%', right: '25%', height: '1.5px', zIndex: 2,
+          background: `linear-gradient(90deg, transparent, ${item.accentColor}88, transparent)`,
+          pointerEvents: 'none',
+        }} />
 
         {/* Top bar */}
         <div style={{
@@ -89,9 +106,15 @@ function VideoCard({ item }) {
               {playing ? 'NOW PLAYING' : 'VIS.SYS'}
             </span>
           </div>
-          <span style={{ fontFamily: 'Share Tech Mono, monospace', fontSize: '0.5rem', letterSpacing: '2px', color: 'rgba(255,255,255,0.2)' }}>
-            ACTIVE
-          </span>
+          <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+            {[0,1,2].map(i => (
+              <motion.div key={i}
+                animate={{ opacity: [1, 0.2, 1] }}
+                transition={{ repeat: Infinity, duration: 2, delay: i * 0.35 }}
+                style={{ width: i === 0 ? '6px' : '4px', height: i === 0 ? '6px' : '4px', borderRadius: '50%', background: i === 0 ? item.accentColor : `${item.accentColor}55`, boxShadow: i === 0 ? `0 0 6px ${item.accentColor}` : 'none' }}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Video frame */}
