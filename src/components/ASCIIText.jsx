@@ -163,7 +163,7 @@ class CanvasTxt {
     this.fontSize = fontSize;
     this.fontFamily = fontFamily;
     this.color = color;
-    this.font = `600 ${this.fontSize}px ${this.fontFamily}`;
+    this.font = `400 ${this.fontSize}px ${this.fontFamily}`;
   }
 
   resize() {
@@ -207,8 +207,8 @@ class CanvAscii {
 
   async init() {
     try {
-      await document.fonts.load('600 200px "IBM Plex Mono"');
-      await document.fonts.load('500 12px "IBM Plex Mono"');
+      await document.fonts.load('400 200px "Press Start 2P"');
+      await document.fonts.load('400 12px "Press Start 2P"');
     } catch (e) {}
     await document.fonts.ready;
     this.setMesh();
@@ -218,7 +218,7 @@ class CanvAscii {
   setMesh() {
     this.textCanvas = new CanvasTxt(this.textString, {
       fontSize: this.textFontSize,
-      fontFamily: 'IBM Plex Mono',
+      fontFamily: 'Press Start 2P',
       color: this.textColor,
     });
     this.textCanvas.resize();
@@ -253,7 +253,7 @@ class CanvAscii {
     this.renderer.setClearColor(0x000000, 0);
 
     this.filter = new AsciiFilter(this.renderer, {
-      fontFamily: 'IBM Plex Mono',
+      fontFamily: 'Press Start 2P',
       fontSize: this.asciiFontSize,
       invert: true,
     });
@@ -410,7 +410,7 @@ export default function ASCIIText({
       style={{ position: 'absolute', width: '100%', height: '100%' }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
         .ascii-text-container canvas {
           position: absolute; left: 0; top: 0; width: 100%; height: 100%;
           image-rendering: pixelated;
