@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { initSFX } from './utils/sfx';
 import Navbar from './components/Navbar';
 import CyberpunkCursor from './components/CyberpunkCursor';
 import { TransitionProvider } from './components/DoorTransition';
@@ -15,6 +16,8 @@ import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 
 export default function App() {
+  useEffect(() => { initSFX(); }, []);
+
   return (
     <BrowserRouter>
       <TransitionProvider>
