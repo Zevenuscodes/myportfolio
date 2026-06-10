@@ -92,47 +92,37 @@ export default function AboutPage() {
               </motion.div>
 
               <motion.div variants={item} style={{
-                width: '50px', height: '2px', marginBottom: '2.5rem',
+                width: '50px', height: '2px', marginBottom: '3rem',
                 background: 'linear-gradient(90deg, var(--cyan), transparent)',
                 boxShadow: '0 0 10px var(--cyan)',
               }} />
 
-              {/* Bio lines */}
-              <motion.p variants={item} style={{
-                fontFamily: 'Share Tech Mono, monospace',
-                fontSize: '0.88rem', lineHeight: '2',
-                color: 'rgba(255,255,255,0.6)',
-                letterSpacing: '0.3px',
-                marginBottom: '1.5rem',
-              }}>
-                I stitch visuals for brands, artists, and creators who refuse
-                to be ignored. Every cut is intentional. Every frame earns its place.
-              </motion.p>
-
-              <motion.p variants={item} style={{
-                fontFamily: 'Share Tech Mono, monospace',
-                fontSize: '0.82rem', lineHeight: '2',
-                color: 'rgba(255,255,255,0.38)',
-                letterSpacing: '0.3px',
-                marginBottom: '1.5rem',
-              }}>
-                4+ years in the edit bay — from zero-budget indie shoots to
-                campaigns with 50M+ views. I've worked across SaaS explainers,
-                full music video productions, motion graphics, and longform
-                documentary cuts.
-              </motion.p>
-
-              <motion.p variants={item} style={{
-                fontFamily: 'Share Tech Mono, monospace',
-                fontSize: '0.82rem', lineHeight: '2',
-                color: 'rgba(255,255,255,0.38)',
-                letterSpacing: '0.3px',
-                marginBottom: '3rem',
-              }}>
-                The brief doesn't scare me. The blank timeline does — and that's
-                exactly where I start. If you have a story, I'll find the edit
-                that makes people feel it.
-              </motion.p>
+              {/* Floating retro words */}
+              <style>{`@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');`}</style>
+              <motion.div variants={item} style={{ position: 'relative', height: '220px', marginBottom: '3rem' }}>
+                {[
+                  { word: 'I',      color: '#00f5ff', top: '0px',   left: '0px',   size: '2.8rem', x: [0,18,-12,6,0],   y: [0,-22,12,-8,0],   dur: 7,   delay: 0   },
+                  { word: 'STITCH', color: '#f5e642', top: '65px',  left: '40px',  size: '2.1rem', x: [0,-14,22,-6,0],  y: [0,18,-28,10,0],   dur: 9,   delay: 0.8 },
+                  { word: 'VIDEOS', color: '#ff006e', top: '140px', left: '10px',  size: '2.3rem', x: [0,22,-16,10,0],  y: [0,-14,20,-10,0],  dur: 8,   delay: 0.4 },
+                ].map(({ word, color, top, left, size, x, y, dur, delay }) => (
+                  <motion.div
+                    key={word}
+                    animate={{ x, y }}
+                    transition={{ repeat: Infinity, duration: dur, delay, ease: 'easeInOut' }}
+                    style={{
+                      position: 'absolute', top, left,
+                      fontFamily: "'Press Start 2P', monospace",
+                      fontSize: size,
+                      color,
+                      textShadow: `0 0 18px ${color}, 0 0 40px ${color}66`,
+                      letterSpacing: '2px',
+                      userSelect: 'none',
+                    }}
+                  >
+                    {word}
+                  </motion.div>
+                ))}
+              </motion.div>
 
               {/* Capabilities label */}
               <motion.div variants={item} style={{
@@ -171,11 +161,8 @@ export default function AboutPage() {
                     {/* Status dot */}
                     <motion.div animate={{ opacity: [1,0.2,1] }} transition={{ repeat: Infinity, duration: 2.5 }}
                       style={{ position: 'absolute', top: '8px', right: '8px', width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(0,245,255,0.7)', boxShadow: '0 0 5px rgba(0,245,255,0.6)' }} />
-                    <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '0.58rem', fontWeight: 700, color: '#fff', letterSpacing: '1px', marginBottom: '0.25rem', position: 'relative', zIndex: 1 }}>
+                    <div style={{ fontFamily: 'Orbitron, monospace', fontSize: '0.58rem', fontWeight: 700, color: '#fff', letterSpacing: '1px', position: 'relative', zIndex: 1 }}>
                       {s.label}
-                    </div>
-                    <div style={{ fontFamily: 'Share Tech Mono, monospace', fontSize: '0.48rem', letterSpacing: '1px', color: 'rgba(0,245,255,0.45)', position: 'relative', zIndex: 1 }}>
-                      {s.tools}
                     </div>
                   </motion.div>
                 ))}
