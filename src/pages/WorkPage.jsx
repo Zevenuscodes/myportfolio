@@ -6,8 +6,8 @@ import { usePageTransition } from '../components/DoorTransition';
 const SHIPS = [
   {
     id: 1,
-    code: 'VS — 01',
-    name: 'VISUALISERS',
+    code: 'MW — 01',
+    name: 'MUSIC WORK',
     subtitle: 'Music visualiser edits',
     accent: '#bc13fe',
     path: '/visualisers',
@@ -16,13 +16,13 @@ const SHIPS = [
   },
   {
     id: 2,
-    code: 'MG — 02',
-    name: 'MOTION GRAPHICS',
+    code: 'BW — 02',
+    name: 'BRAND WORK',
     subtitle: 'Motion design & animation',
     accent: '#f5e642',
     path: '/motion-designs',
     clipPath: 'polygon(0% 0%, 88% 0%, 100% 50%, 88% 100%, 0% 100%, 12% 50%)',
-    stats: [{ label: 'Format', value: '2D' }, { label: 'Type', value: 'MOTION' }],
+    stats: [{ label: 'Format', value: '2D' }, { label: 'Type', value: 'BRAND' }],
   },
 ];
 
