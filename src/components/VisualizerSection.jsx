@@ -141,6 +141,7 @@ function VideoCard({ item }) {
             poster={item.thumbnail}
             loop
             playsInline
+            preload="none"
             onEnded={() => setPlaying(false)}
             style={{ width: '100%', display: 'block' }}
           />

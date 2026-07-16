@@ -87,7 +87,7 @@ function VideoCard({ project, index }) {
           transition: 'box-shadow 0.3s, border-color 0.3s', cursor: 'pointer', overflow: 'hidden',
         }}
       >
-        <video ref={videoRef} src={project.video} loop playsInline onEnded={() => setPlaying(false)} style={{ width: '100%', display: 'block' }} />
+        <video ref={videoRef} src={project.video} loop playsInline preload="none" onEnded={() => setPlaying(false)} style={{ width: '100%', display: 'block' }} />
         {/* Grid texture */}
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', backgroundImage: 'linear-gradient(rgba(245,230,66,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(245,230,66,0.04) 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
         {/* Scanlines */}

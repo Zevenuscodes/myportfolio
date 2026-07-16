@@ -90,6 +90,7 @@ function VideoCard({ project, index }) {
           src={project.video}
           loop
           playsInline
+          preload="none"
           onEnded={() => setPlaying(false)}
           style={{ width: '100%', display: 'block' }}
         />
