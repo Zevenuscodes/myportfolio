@@ -185,6 +185,51 @@ button {
   .about-grid { grid-template-columns: 1fr; }
 }
 
+.about-portrait {
+  position: sticky;
+  top: 7rem;
+}
+
+@media (max-width: 900px) {
+  /* Portrait leads on phones, straight under the headline */
+  .about-portrait { position: static; order: -1; }
+}
+
+/* Editorial photo treatment: grayscale, whites tinted to bone via multiply */
+.editorial-photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.editorial-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.08) brightness(1.03);
+  transform: scale(1.001);
+  transition: filter 0.8s var(--ease), transform 1.2s var(--ease);
+}
+
+.editorial-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  transition: opacity 0.8s var(--ease);
+}
+
+@media (hover: hover) {
+  .editorial-photo:hover img {
+    filter: grayscale(0%) contrast(1) brightness(1);
+    transform: scale(1.03);
+  }
+  .editorial-photo:hover::after { opacity: 0; }
+}
+
 /* Video grid */
 .video-grid {
   display: grid;

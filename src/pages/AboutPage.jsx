@@ -3,6 +3,24 @@ import { motion } from 'framer-motion';
 import Footer from '../components/Footer';
 import { PageHeader, fadeUp, stagger } from '../components/ui';
 
+// Monochrome, tinted to the page's bone colour; colour returns on hover.
+function Photo({ src, alt, ratio, position = '50% 50%', figure, caption, style }) {
+  return (
+    <figure style={{ margin: 0, ...style }}>
+      <div className="editorial-photo" style={{ aspectRatio: ratio }}>
+        <img src={src} alt={alt} style={{ objectPosition: position }} />
+      </div>
+      <figcaption
+        className="eyebrow"
+        style={{ marginTop: '0.75rem', display: 'flex', justifyContent: 'space-between', gap: '1rem' }}
+      >
+        <span>{figure}</span>
+        <span>{caption}</span>
+      </figcaption>
+    </figure>
+  );
+}
+
 const FACTS = [
   { label: 'Role',     value: 'Creative Director' },
   { label: 'Based in', value: 'Dehradun, India' },
@@ -56,22 +74,28 @@ export default function AboutPage() {
                   </div>
                 ))}
               </motion.dl>
+
+              <motion.div variants={fadeUp} style={{ marginTop: '4rem' }}>
+                <Photo
+                  src="/yash.jpg"
+                  alt="Yash Joshi in the mountains"
+                  ratio="16 / 10"
+                  figure="Fig. 02"
+                  caption="Somewhere above the clouds"
+                />
+              </motion.div>
             </div>
 
-            <motion.figure variants={fadeUp} style={{ margin: 0, position: 'sticky', top: '7rem' }}>
-              <img
-                src="/yash.jpg"
-                alt="Yash Joshi"
-                style={{
-                  width: '100%', display: 'block',
-                  objectFit: 'cover', aspectRatio: '4 / 5',
-                  filter: 'grayscale(100%) contrast(1.05)',
-                }}
+            <motion.div variants={fadeUp} className="about-portrait">
+              <Photo
+                src="/yash-portrait.jpg"
+                alt="Yash Joshi in a black hoodie, looking over his shoulder"
+                ratio="3 / 4"
+                position="50% 28%"
+                figure="Fig. 01"
+                caption="Yash Joshi"
               />
-              <figcaption className="eyebrow" style={{ marginTop: '0.75rem' }}>
-                Somewhere above the clouds
-              </figcaption>
-            </motion.figure>
+            </motion.div>
           </motion.div>
         </div>
       </section>
