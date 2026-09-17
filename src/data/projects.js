@@ -52,6 +52,14 @@ export const PROJECTS = [
     video: '/visualiser2.mp4',
   },
   {
+    id: 'satyajit-ray',
+    category: 'short-form',
+    title: 'Satyajit Ray',
+    description: 'A short-form piece on Satyajit Ray — from the advertising agency desk to auteur.',
+    tags: ['Short Form', 'Documentary'],
+    video: '/ray3.mp4',
+  },
+  {
     id: 'elon-nikhil',
     category: 'short-form',
     client: 'Elon Musk X Nikhil Kamath',
