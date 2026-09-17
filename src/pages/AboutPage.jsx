@@ -74,16 +74,6 @@ export default function AboutPage() {
                   </div>
                 ))}
               </motion.dl>
-
-              <motion.div variants={fadeUp} style={{ marginTop: '4rem' }}>
-                <Photo
-                  src="/yash.jpg"
-                  alt="Yash Joshi in the mountains"
-                  ratio="16 / 10"
-                  figure="Fig. 02"
-                  caption="Somewhere above the clouds"
-                />
-              </motion.div>
             </div>
 
             <motion.div variants={fadeUp} className="about-portrait">
