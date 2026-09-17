@@ -1,188 +1,138 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 import { usePageTransition } from './DoorTransition';
 
 const NAV_LINKS = [
-  { label: 'HOME',       path: '/' },
-  { label: 'ABOUT',      path: '/about' },
-  { label: 'WORK',       path: '/work' },
-  { label: 'CONTACT ME', path: '/contact' },
+  { label: 'Work',    path: '/work' },
+  { label: 'About',   path: '/about' },
+  { label: 'Contact', path: '/contact' },
 ];
 
+const WORK_PATHS = ['/work', '/music-videos', '/short-form', '/saas-explainers', '/longform'];
+
 export default function Navbar() {
-  const [scrolled, setScrolled]   = useState(false);
-  const [menuOpen, setMenuOpen]   = useState(false);
-  const { transitionTo }          = usePageTransition();
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { transitionTo } = usePageTransition();
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const go = (path) => {
     setMenuOpen(false);
-    transitionTo(path);
+    if (path !== pathname) transitionTo(path);
   };
+
+  const isActive = (path) => path === '/work' ? WORK_PATHS.includes(pathname) : pathname === path;
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="main-nav"
+      <nav
         style={{
           position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          padding: '1.2rem 3rem',
-          background: scrolled || menuOpen ? 'rgba(3,4,10,0.97)' : 'transparent',
-          borderBottom: scrolled ? '1px solid rgba(0,245,255,0.12)' : '1px solid transparent',
-          backdropFilter: scrolled || menuOpen ? 'blur(14px)' : 'none',
-          transition: 'all 0.4s ease',
+          padding: '1.25rem max(var(--gutter), calc((100% - 1280px) / 2))',
+          background: scrolled || menuOpen ? 'rgba(242,239,232,0.92)' : 'transparent',
+          backdropFilter: scrolled || menuOpen ? 'blur(12px)' : 'none',
+          borderBottom: `1px solid ${scrolled ? 'var(--rule)' : 'transparent'}`,
+          transition: 'background 0.3s, border-color 0.3s',
         }}
       >
-        {/* Logo */}
-        <motion.div
-          whileHover={{ textShadow: '0 0 30px #00f5ff' }}
+        <button
+          type="button"
           onClick={() => go('/')}
-          style={{
-            fontFamily: 'Orbitron, monospace', fontWeight: 900, fontSize: '1rem',
-            color: 'var(--cyan)', letterSpacing: '3px',
-            textShadow: '0 0 15px rgba(0,245,255,0.9), 0 0 40px rgba(0,245,255,0.4)',
-            cursor: 'pointer',
-          }}
+          className="display"
+          style={{ fontSize: '1.65rem', lineHeight: 1, letterSpacing: '-0.01em' }}
         >
-          DARZEEEEEEE
-        </motion.div>
+          Darzeeeeeee<span style={{ color: 'var(--accent)' }}>.</span>
+        </button>
 
-        {/* Desktop links */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
+        <div className="nav-desktop" style={{ alignItems: 'center', gap: '2.25rem' }}>
           {NAV_LINKS.map((link) => (
-            <motion.button
-              key={link.label}
-              whileHover={{ color: 'var(--cyan)', textShadow: '0 0 10px var(--cyan)' }}
+            <button
+              key={link.path}
+              type="button"
               onClick={() => go(link.path)}
               style={{
-                background: 'none', border: 'none', cursor: 'pointer',
-                fontFamily: 'Share Tech Mono, monospace', fontSize: '0.62rem',
-                letterSpacing: '3px', color: 'rgba(255,255,255,0.4)',
-                textTransform: 'uppercase', transition: 'color 0.2s',
-                display: 'none', // hidden on mobile, shown via media query equivalent
+                position: 'relative', fontSize: '0.9rem', fontWeight: 500,
+                color: isActive(link.path) ? 'var(--ink)' : 'var(--muted)',
+                transition: 'color 0.2s', padding: '0.25rem 0',
               }}
-              className="nav-desktop-link"
+              onMouseEnter={e => { e.currentTarget.style.color = 'var(--ink)'; }}
+              onMouseLeave={e => { e.currentTarget.style.color = isActive(link.path) ? 'var(--ink)' : 'var(--muted)'; }}
             >
               {link.label}
-            </motion.button>
+              {isActive(link.path) && (
+                <span style={{
+                  position: 'absolute', left: 0, right: 0, bottom: '-2px',
+                  height: '1px', background: 'var(--ink)',
+                }} />
+              )}
+            </button>
           ))}
-
-          {/* Hamburger */}
-          <div
-            onClick={() => setMenuOpen(!menuOpen)}
-            style={{ display: 'flex', flexDirection: 'column', gap: '5px', cursor: 'pointer', padding: '4px' }}
-          >
-            <motion.span
-              animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6.5 : 0 }}
-              transition={{ duration: 0.25 }}
-              style={{ display: 'block', width: '22px', height: '1.5px', background: menuOpen ? 'var(--cyan)' : 'rgba(255,255,255,0.5)', transformOrigin: 'center', boxShadow: menuOpen ? '0 0 8px var(--cyan)' : 'none' }}
-            />
-            <motion.span
-              animate={{ opacity: menuOpen ? 0 : 1 }}
-              transition={{ duration: 0.2 }}
-              style={{ display: 'block', width: '16px', height: '1.5px', background: 'rgba(255,255,255,0.5)', transformOrigin: 'center' }}
-            />
-            <motion.span
-              animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6.5 : 0 }}
-              transition={{ duration: 0.25 }}
-              style={{ display: 'block', width: '22px', height: '1.5px', background: menuOpen ? 'var(--cyan)' : 'rgba(255,255,255,0.5)', transformOrigin: 'center', boxShadow: menuOpen ? '0 0 8px var(--cyan)' : 'none' }}
-            />
-          </div>
         </div>
-      </motion.nav>
 
-      {/* Hamburger overlay menu */}
+        <button
+          type="button"
+          className="nav-burger"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          style={{ fontSize: '0.9rem', fontWeight: 500, padding: '0.25rem 0' }}
+        >
+          {menuOpen ? 'Close' : 'Menu'}
+        </button>
+      </nav>
+
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             key="menu"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
             style={{
-              position: 'fixed', top: '64px', left: 0, right: 0,
-              zIndex: 199,
-              background: 'rgba(3,4,10,0.97)',
-              backdropFilter: 'blur(18px)',
-              borderBottom: '1px solid rgba(0,245,255,0.12)',
-              padding: '2rem 3rem 2.5rem',
+              position: 'fixed', inset: 0, zIndex: 199,
+              background: 'var(--bg)',
+              padding: '7rem var(--gutter) 2rem',
+              display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
             }}
           >
-            {/* Scan line accent */}
-            <div style={{
-              position: 'absolute', top: 0, left: '3rem', right: '3rem',
-              height: '1px',
-              background: 'linear-gradient(90deg, transparent, rgba(0,245,255,0.3), transparent)',
-            }} />
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-              {NAV_LINKS.map((link, i) => (
+            <div>
+              {[{ label: 'Home', path: '/' }, ...NAV_LINKS].map((link, i) => (
                 <motion.button
-                  key={link.label}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.07, duration: 0.35 }}
+                  key={link.path}
+                  type="button"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05 + i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   onClick={() => go(link.path)}
+                  className="display"
                   style={{
-                    background: 'none', border: 'none', cursor: 'pointer',
-                    fontFamily: 'Orbitron, monospace', fontWeight: 700,
-                    fontSize: 'clamp(1.1rem, 2.5vw, 1.6rem)',
-                    letterSpacing: '4px', color: 'rgba(255,255,255,0.35)',
-                    textTransform: 'uppercase', textAlign: 'left',
-                    padding: '0.65rem 0',
-                    borderBottom: '1px solid rgba(0,245,255,0.05)',
-                    transition: 'color 0.2s',
-                  }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.color = 'var(--cyan)';
-                    e.currentTarget.style.textShadow = '0 0 20px rgba(0,245,255,0.6)';
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.color = 'rgba(255,255,255,0.35)';
-                    e.currentTarget.style.textShadow = 'none';
+                    display: 'flex', alignItems: 'baseline', gap: '1rem', width: '100%',
+                    fontSize: 'clamp(3rem, 14vw, 5rem)', textAlign: 'left',
+                    padding: '0.5rem 0', borderBottom: '1px solid var(--rule)',
+                    fontStyle: isActive(link.path) ? 'italic' : 'normal',
+                    color: isActive(link.path) ? 'var(--accent)' : 'var(--ink)',
                   }}
                 >
-                  <span style={{
-                    fontFamily: 'Share Tech Mono, monospace',
-                    fontSize: '0.45rem', letterSpacing: '3px',
-                    color: 'rgba(0,245,255,0.3)', marginRight: '1rem',
-                    verticalAlign: 'middle',
-                  }}>
+                  <span className="eyebrow" style={{ fontStyle: 'normal' }}>
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   {link.label}
                 </motion.button>
               ))}
             </div>
-
-            {/* Bottom label */}
-            <div style={{
-              marginTop: '1.5rem',
-              fontFamily: 'Share Tech Mono, monospace', fontSize: '0.45rem',
-              letterSpacing: '4px', color: 'rgba(0,245,255,0.2)',
-              textTransform: 'uppercase',
-            }}>
-              // Navigate
-            </div>
+            <div className="eyebrow">Dehradun, India</div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <style>{`
-        @media (min-width: 768px) {
-          .nav-desktop-link { display: block !important; }
-        }
-      `}</style>
     </>
   );
 }

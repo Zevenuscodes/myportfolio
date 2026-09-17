@@ -1,43 +1,34 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 export default function Footer() {
   return (
-    <footer className="site-footer" style={{
-      borderTop: '1px solid rgba(0,245,255,0.1)',
-      padding: '2rem 4rem',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      background: '#03040a',
-    }}>
-      <span style={{
-        fontFamily: 'Share Tech Mono, monospace', fontSize: '0.62rem',
-        letterSpacing: '2px', color: 'var(--text-muted)',
+    <footer style={{ padding: '0 var(--gutter) 2rem' }}>
+      <div className="site-footer" style={{
+        maxWidth: '1280px', margin: '0 auto',
+        paddingTop: '1.5rem', borderTop: '1px solid var(--rule)',
       }}>
-        © 2026 <span style={{ color: 'var(--cyan)' }}>DARZEEEEEEE</span>
-      </span>
-
-      <span style={{
-        fontFamily: 'Share Tech Mono, monospace', fontSize: '0.55rem',
-        letterSpacing: '2px', color: 'var(--text-muted)',
-      }}>
-        SYSTEM STATUS:{' '}
-        <motion.span
-          animate={{ opacity: [1, 0.3, 1] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          style={{ color: 'var(--cyan)' }}
-        >
-          ● ONLINE
-        </motion.span>
-      </span>
-
-      <span style={{
-        fontFamily: 'Share Tech Mono, monospace', fontSize: '0.55rem',
-        letterSpacing: '1px', color: 'var(--text-muted)',
-      }}>
-        CRAFTED WITH CODE & CAFFEINE
-      </span>
+        <span className="eyebrow">© 2026 Darzeeeeeee</span>
+        <span className="eyebrow">Dehradun, India</span>
+        <div style={{ display: 'flex', gap: '1.75rem' }}>
+          <a
+            className="eyebrow"
+            href="https://www.instagram.com/darzeeeeeee/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'var(--ink)' }}
+          >
+            Instagram ↗
+          </a>
+          <button
+            type="button"
+            className="eyebrow"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            style={{ color: 'var(--ink)' }}
+          >
+            Back to top ↑
+          </button>
+        </div>
+      </div>
     </footer>
   );
 }
