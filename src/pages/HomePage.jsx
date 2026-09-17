@@ -8,7 +8,7 @@ import { usePageTransition } from '../components/DoorTransition';
 import { IndexRow, fadeUp, stagger } from '../components/ui';
 
 const INDEX = [
-  { label: 'Music Videos', note: 'Visualisers', path: '/music-videos' },
+  { label: 'Music Visualisers', note: 'Visualiser edits', path: '/music-videos' },
   { label: 'Short Form', note: 'Reels & edits', path: '/short-form' },
   { label: 'SaaS', note: 'Explainers', path: '/saas-explainers' },
   { label: 'Get in touch', note: 'Start a project', path: '/contact' },

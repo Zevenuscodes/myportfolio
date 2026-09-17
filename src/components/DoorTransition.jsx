@@ -13,7 +13,7 @@ const LABELS = {
   '/': 'Home',
   '/about': 'About',
   '/work': 'Work',
-  '/music-videos': 'Music Videos',
+  '/music-videos': 'Music Visualisers',
   '/short-form': 'Short Form',
   '/saas-explainers': 'SaaS',
   '/longform': 'Documentaries',

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { PageHeader, fadeUp, stagger } from './ui';
 
-const PROJECT_TYPES = ['Brand Film', 'Music Video', 'Social Content', 'Documentary', 'Commercial', 'Other'];
+const PROJECT_TYPES = ['Brand Film', 'Music Visualiser', 'Social Content', 'Documentary', 'Commercial', 'Other'];
 const SOCIALS = [
   { label: 'Instagram', href: 'https://www.instagram.com/darzeeeeeee/' },
 ];

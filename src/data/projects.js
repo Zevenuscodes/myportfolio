@@ -1,7 +1,7 @@
 // Single source of truth for all work. Category pages and the Work grid read from here.
 
 export const CATEGORIES = [
-  { key: 'music-videos', label: 'Music Videos', path: '/music-videos' },
+  { key: 'music-videos', label: 'Music Visualisers', path: '/music-videos' },
   { key: 'short-form',   label: 'Short Form',   path: '/short-form' },
   { key: 'saas',         label: 'SaaS',         path: '/saas-explainers' },
 ];
