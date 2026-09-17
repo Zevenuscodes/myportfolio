@@ -44,17 +44,48 @@ export function PageHeader({ eyebrow, title, aside }) {
   );
 }
 
+const canHover = typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches;
+
 export function VideoProject({ project, index }) {
   const videoRef = useRef(null);
   const [playing, setPlaying] = useState(false);
+  const [previewing, setPreviewing] = useState(false);
   const [hovered, setHovered] = useState(false);
+
+  // Hover: silent preview from the start. Click: play with sound.
+  const startPreview = () => {
+    setHovered(true);
+    const v = videoRef.current;
+    if (!canHover || !v || playing) return;
+    v.muted = true;
+    v.currentTime = 0;
+    v.play().then(() => setPreviewing(true)).catch(() => {});
+  };
+
+  const stopPreview = () => {
+    setHovered(false);
+    const v = videoRef.current;
+    if (!v || playing) return;
+    v.pause();
+    v.currentTime = 0.1;
+    setPreviewing(false);
+  };
 
   const toggle = () => {
     const v = videoRef.current;
     if (!v) return;
-    if (playing) { v.pause(); setPlaying(false); }
-    else { v.play(); setPlaying(true); }
+    if (playing) {
+      v.pause();
+      setPlaying(false);
+      return;
+    }
+    v.muted = false;
+    v.play().catch(() => {});
+    setPlaying(true);
+    setPreviewing(false);
   };
+
+  const label = playing ? 'Pause' : previewing ? 'Play with sound' : 'Play';
 
   return (
     <motion.article
@@ -66,8 +97,8 @@ export function VideoProject({ project, index }) {
       <button
         type="button"
         onClick={toggle}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+        onMouseEnter={startPreview}
+        onMouseLeave={stopPreview}
         aria-label={`${playing ? 'Pause' : 'Play'} ${project.title}`}
         style={{
           position: 'relative', display: 'block', width: '100%',
@@ -105,10 +136,23 @@ export function VideoProject({ project, index }) {
         >
           <span style={{
             width: '0.5rem', height: '0.5rem', borderRadius: '50%',
-            background: playing ? 'var(--accent)' : 'var(--ink)',
+            background: playing || previewing ? 'var(--accent)' : 'var(--ink)',
           }} />
-          {playing ? 'Pause' : 'Play'}
+          {label}
         </motion.span>
+
+        {project.kicker && (
+          <span
+            className="eyebrow"
+            style={{
+              position: 'absolute', top: '1rem', right: '1rem',
+              padding: '0.4rem 0.65rem', background: 'var(--bg)', color: 'var(--ink)',
+              pointerEvents: 'none',
+            }}
+          >
+            {project.kicker}
+          </span>
+        )}
       </button>
 
       <div style={{
