@@ -52,6 +52,7 @@ export default function FloatingScissors() {
   return (
     <div
       aria-hidden="true"
+      className="floating-scissors"
       style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', zIndex: 0 }}
     >
       {items.map(s => (

@@ -23,6 +23,12 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Lock page scroll behind the full-screen mobile menu
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+
   const go = (path) => {
     setMenuOpen(false);
     if (path !== pathname) transitionTo(path);

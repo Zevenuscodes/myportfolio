@@ -21,7 +21,7 @@ export default function HomePage() {
     <div style={{ position: 'relative' }}>
       <FloatingScissors />
 
-      <section className="page" style={{ position: 'relative', zIndex: 1, paddingBottom: '4rem' }}>
+      <section className="page hero-section" style={{ position: 'relative', zIndex: 1 }}>
         <HeroSilhouette />
         <HeroWorker />
         <motion.div
@@ -44,7 +44,7 @@ export default function HomePage() {
             <span>Dehradun, IN · Available 2026</span>
           </motion.div>
 
-          <div style={{ minHeight: 'clamp(420px, 66vh, 700px)', display: 'flex', alignItems: 'flex-end' }}>
+          <div className="hero-stage">
             <motion.h1
               variants={fadeUp}
               className="display"

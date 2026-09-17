@@ -124,9 +124,41 @@ button {
   z-index: 0;
 }
 
+.hero-section { padding-bottom: 4rem; }
+
+.hero-stage {
+  min-height: clamp(420px, 66vh, 700px);
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Phone/tablet: stack cutter → headline → editor at desk */
 @media (max-width: 900px) {
-  .hero-silhouette { width: 110vw; height: 75vh; left: -12vw; top: 5rem; bottom: auto; }
-  .hero-worker { display: none; }
+  /* SVG is 600×800 units but the timeline reaches x=730, so size to fit 760 units */
+  .hero-silhouette {
+    top: 10.5rem;
+    bottom: auto;
+    left: var(--gutter);
+    width: calc((100vw - 2 * var(--gutter)) * 600 / 760);
+    height: calc((100vw - 2 * var(--gutter)) * 800 / 760);
+  }
+  .hero-stage {
+    min-height: calc((100vw - 2 * var(--gutter)) * 800 / 760 + 1rem);
+  }
+  .hero-worker {
+    bottom: 3rem;
+    right: var(--gutter);
+    width: calc(100vw - 2 * var(--gutter));
+    height: calc((100vw - 2 * var(--gutter)) * 0.8);
+  }
+  .hero-section {
+    padding-bottom: calc((100vw - 2 * var(--gutter)) * 0.64 + 4rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .floating-scissors > div:nth-child(n + 23) { display: none; }
+  .floating-scissors svg { width: 65%; height: auto; }
 }
 
 /* Index rows (work lists) */
