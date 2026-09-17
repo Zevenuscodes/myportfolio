@@ -323,3 +323,17 @@ button {
   .work-filters { gap: 0.25rem 1.25rem; }
   .work-filter { font-size: 0.95rem; }
 }
+
+/* Vertical (1080×1920) cards sit three-up so they don't tower */
+.video-grid--tall {
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .video-grid--tall { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .video-grid--tall { grid-template-columns: 1fr; }
+}

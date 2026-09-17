@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { DEFAULT_RATIO } from '../data/projects';
 
 export const EASE = [0.22, 1, 0.36, 1];
 
@@ -103,7 +104,7 @@ export function VideoProject({ project, index }) {
         style={{
           position: 'relative', display: 'block', width: '100%',
           background: 'var(--ink)', overflow: 'hidden', padding: 0,
-          aspectRatio: '4 / 3',
+          aspectRatio: project.ratio || DEFAULT_RATIO,
         }}
       >
         <motion.video

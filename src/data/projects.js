@@ -2,9 +2,13 @@
 
 export const CATEGORIES = [
   { key: 'music-videos', label: 'Music Visualisers', path: '/music-videos' },
-  { key: 'short-form',   label: 'Short Form',   path: '/short-form' },
-  { key: 'saas',         label: 'SaaS',         path: '/saas-explainers' },
+  { key: 'short-form',   label: 'Short Form',        path: '/short-form',      ratio: '9 / 16' },
+  { key: 'saas',         label: 'SaaS',              path: '/saas-explainers' },
 ];
+
+// Card frame per category — short form is shot 1080×1920, so it gets a vertical frame.
+export const DEFAULT_RATIO = '4 / 3';
+export const categoryRatio = key => CATEGORIES.find(c => c.key === key)?.ratio || DEFAULT_RATIO;
 
 export const PROJECTS = [
   {
@@ -24,13 +28,12 @@ export const PROJECTS = [
     video: '/visualiser.mp4',
   },
   {
-    id: 'truck-art-adda',
+    id: 'accidental-design',
     category: 'short-form',
-    client: 'Truck Art',
-    title: 'Truck Art Adda',
-    description: 'A vibrant dive into the subculture of Indian truck art — bold, colourful, unapologetically loud.',
+    title: "India's Accidental Design",
+    description: 'A short-form dive into the graphic design of Indian matchbox labels — the everyday art nobody set out to make.',
     tags: ['Short Form', 'Documentary'],
-    video: '/truckartsample.mp4',
+    video: '/mbox.mp4',
   },
   {
     id: 'paypal',
